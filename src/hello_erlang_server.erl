@@ -4,21 +4,25 @@
 -export([init/1, handle_call/3, handle_cast/2,
          handle_info/2, terminate/2, code_change/3]).
 
--export([start/0]).
+-export([start_link/0]).
+-export([get/3]).
 
 % public functions
 
-start() ->
-  gen_server:start({local, hello_erlang_server}, ?MODULE, [], []).
+start_link() ->
+  gen_server:start_link({local, hello_erlang_server}, ?MODULE, [], []).
+
+get(Key, Fallback, User) -> gen_server:call(?MODULE, {get, Key, Fallback, User}).
 
 % gen_server callbacks
 
 init(_Args) ->
-  {ok, launchdarkly:start_instance("YOUR_SDK_KEY_HERE")}.
+  eld:start_instance("YOUR_SDK_KEY"),
+  {ok, []}.
 
 handle_call({get, Key, Fallback, User}, _From, State) ->
-  Flag = launchdarkly:evaluate(<<Key>>, #{key => <<User>>}, Fallback),
-  {reply, Flag, Flag}.
+  Flag = eld:evaluate(Key, #{key => User}, Fallback),
+  {reply, Flag, State}.
 
 handle_cast(_Request, State) ->
   {noreply, State}.

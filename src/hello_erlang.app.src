@@ -5,7 +5,8 @@
   {mod, {hello_erlang_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    eld
    ]},
   {env,[]},
   {modules, []},
