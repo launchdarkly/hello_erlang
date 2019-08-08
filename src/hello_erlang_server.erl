@@ -21,7 +21,7 @@ init(_Args) ->
   {ok, []}.
 
 handle_call({get, Key, Fallback, User}, _From, State) ->
-  Flag = eld:evaluate(Key, #{key => User}, Fallback),
+  Flag = eld:variation(Key, #{key => User}, Fallback),
   {reply, Flag, State}.
 
 handle_cast(_Request, State) ->

@@ -17,5 +17,5 @@ rebar3 shell
 ```
 
 ```erlang
-hello_erlang_server:get(<<"YOUR_KEY">>, "YOUR_FALLBACK_VALUE", <<"YOUR_USER">>).
+hello_erlang_server:get(<<"YOUR_KEY">>, "YOUR_FALLBACK_VALUE", <<"YOUR_USER_KEY">>).
 ```

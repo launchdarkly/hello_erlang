@@ -8,7 +8,7 @@
   3},
  {<<"eld">>,
   {git,"https://github.com/launchdarkly/erlang-server-sdk",
-       {ref,"0386700df6abc77d0ecbfa7fc22e1adf469d6b97"}},
+       {ref,"03055021d1ec9d505713e54d3ae641d1e1f2180f"}},
   0},
  {<<"gun">>,
   {git,"https://github.com/ninenines/gun",
