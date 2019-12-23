@@ -17,7 +17,7 @@ get(Key, Fallback, User) -> gen_server:call(?MODULE, {get, Key, Fallback, User})
 % gen_server callbacks
 
 init(_Args) ->
-  eld:start_instance("YOUR_SDK_KEY"),
+  eld:start_instance(os:getenv("LD_SDK_KEY")),
   {ok, []}.
 
 handle_call({get, Key, Fallback, User}, _From, State) ->
