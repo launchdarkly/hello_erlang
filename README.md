@@ -10,12 +10,11 @@ rebar3 compile
 
 ## Run
 
-You'll need to put your SDK key in `hello_erlang_server.erl` in the `init()` callback.
-
 ```bash
+export LD_SDK_KEY=YOUR_SDK_KEY
 rebar3 shell
 ```
 
 ```erlang
-hello_erlang_server:get(<<"YOUR_KEY">>, "YOUR_FALLBACK_VALUE", <<"YOUR_USER_KEY">>).
+hello_erlang_server:get(<<"FLAG_KEY">>, "FALLBACK_VALUE", <<"USER_KEY">>).
 ```
