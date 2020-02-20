@@ -6,7 +6,7 @@
   {applications,
    [kernel,
     stdlib,
-    eld
+    launchdarkly_server_sdk
    ]},
   {env,[]},
   {modules, []},

@@ -17,11 +17,11 @@ get(Key, Fallback, User) -> gen_server:call(?MODULE, {get, Key, Fallback, User})
 % gen_server callbacks
 
 init(_Args) ->
-  eld:start_instance(os:getenv("LD_SDK_KEY")),
+  ldclient:start_instance(os:getenv("LD_SDK_KEY")),
   {ok, []}.
 
 handle_call({get, Key, Fallback, User}, _From, State) ->
-  Flag = eld:variation(Key, #{key => User}, Fallback),
+  Flag = ldclient:variation(Key, #{key => User}, Fallback),
   {reply, Flag, State}.
 
 handle_cast(_Request, State) ->
