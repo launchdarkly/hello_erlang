@@ -21,7 +21,7 @@ init(_Args) ->
   {ok, []}.
 
 handle_call({get, Key, Fallback, ContextKey}, _From, State) ->
-  Flag = ldclient:variation(Key, #{key => ContextKey, kind => <<"user">>}, Fallback),
+  Flag = ldclient:variation(Key, ldclient_context:new(ContextKey), Fallback),
   {reply, Flag, State}.
 
 handle_cast(_Request, State) ->
