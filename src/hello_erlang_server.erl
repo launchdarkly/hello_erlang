@@ -12,7 +12,7 @@
 start_link() ->
   gen_server:start_link({local, hello_erlang_server}, ?MODULE, [], []).
 
-get(Key, Fallback, User) -> gen_server:call(?MODULE, {get, Key, Fallback, User}).
+get(Key, Fallback, ContextKey) -> gen_server:call(?MODULE, {get, Key, Fallback, ContextKey}).
 
 % gen_server callbacks
 
@@ -20,8 +20,8 @@ init(_Args) ->
   ldclient:start_instance(os:getenv("LD_SDK_KEY")),
   {ok, []}.
 
-handle_call({get, Key, Fallback, User}, _From, State) ->
-  Flag = ldclient:variation(Key, #{key => User}, Fallback),
+handle_call({get, Key, Fallback, ContextKey}, _From, State) ->
+  Flag = ldclient:variation(Key, ldclient_context:new(ContextKey), Fallback),
   {reply, Flag, State}.
 
 handle_cast(_Request, State) ->
