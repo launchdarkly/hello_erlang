@@ -21,7 +21,7 @@ init(_Args) ->
   {ok, []}.
 
 handle_call({get, Key, Fallback, User}, _From, State) ->
-  Flag = ldclient:variation(Key, #{key => User}, Fallback),
+  Flag = ldclient:variation(Key, #{key => User, kind => <<"user">>}, Fallback),
   {reply, Flag, State}.
 
 handle_cast(_Request, State) ->
