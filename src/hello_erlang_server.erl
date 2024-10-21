@@ -17,7 +17,10 @@ get(Key, Fallback, ContextKey) -> gen_server:call(?MODULE, {get, Key, Fallback, 
 % gen_server callbacks
 
 init(_Args) ->
-  ldclient:start_instance(os:getenv("LD_SDK_KEY")),
+  ldclient:start_instance(os:getenv("LD_SDK_KEY"),  #{
+  http_options => #{
+      tls_options => ldclient_config:tls_basic_options()
+  }}),
   {ok, []}.
 
 handle_call({get, Key, Fallback, ContextKey}, _From, State) ->
